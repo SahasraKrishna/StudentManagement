@@ -1,0 +1,2 @@
+# SamplePractice
+Java coding practice
