@@ -33,6 +33,5 @@ public class Studentmngmt {
 			}
 		} while (choice != 5);
 		sc.close();
-		//testing
 	}
 }
