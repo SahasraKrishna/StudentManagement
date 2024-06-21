@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class FileOperation {
 
@@ -30,18 +31,21 @@ public class FileOperation {
 
 	}
 
-	public void displayData() {
+	public ArrayList<Student> displayData() {
+		ArrayList<Student> students = new ArrayList<>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
 			String line;
 			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
-				
+				Student student = Student.fromFile(line);
+				students.add(student);
 			}
 			reader.close();
-               
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return students;
+
 	}
 }

@@ -8,7 +8,7 @@ public class Student {
 	String gender;
 	int grade;
 
-	public Student(int age, String name, String gender, int grade) {
+	public Student(int regno, int age, String name, String gender, int grade) {
 		super();
 		this.regno = ++regnoGenerator;
 		this.age = age;
@@ -60,7 +60,27 @@ public class Student {
 	}
 
 	public String fileFormat() {
-		return regno + "|" + age + "|" + name + "|" + gender + "|" + grade+"\n";
+		return regno + "|" + age + "|" + name + "|" + gender + "|" + grade + "\n";
 
+	}
+
+	/*
+	 * this method is used to convert the line from the file into the student object
+	 * 
+	 * @returns student object
+	 * 
+	 * @exception no
+	 */
+	public static Student fromFile(String line) {
+		String[] parts = line.split("|");
+		String regno = parts[0];
+		int regno1 = Integer.parseInt(regno);
+		String age = parts[1];
+		int age1 = Integer.parseInt(age);
+		String name = parts[2];
+		String gender = parts[3];
+		String grade = parts[4];
+		int grade1 = Integer.parseInt(grade);
+		return new Student(regno1, age1, name, gender, grade1);
 	}
 }

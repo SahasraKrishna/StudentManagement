@@ -26,10 +26,9 @@ public class Actions {
 	 * 
 	 */
 	public void displayStudents() {
-		System.out.println(" REGNO\tAGE\tNAME\tGENDER\tGRADE ");
-		// for (Student k : students)
-		// System.out.println(k.regno + " \t" + k.age + " \t" + k.name + " \t" +
-		// k.gender + " \t" + k.grade);
+		System.out.println("  REGNO\tAGE\tNAME\tGENDER\tGRADE ");
+		for (Student k : students)
+			System.out.println(k.regno + " \t" + k.age + " \t" + k.name + " \t" + k.gender + " \t" + k.grade);
 		fo.displayData();
 	}
 
@@ -44,11 +43,12 @@ public class Actions {
 	 * 
 	 */
 	public Student addStudent() {
+		int regno = 0;
 		String name = readName();
 		int age = readAge();
 		String gender = readGender();
 		int grade = readGrade();
-		Student student = new Student(age, name, gender, grade);
+		Student student = new Student(regno, age, name, gender, grade);
 		students.add(student);
 		fo.save(student);
 		return student;

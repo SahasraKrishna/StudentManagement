@@ -1,6 +1,2 @@
 1|11|john|m|11
-2|11|rose|f|11
-1|11|john|m|1
-2|11|rose|f|11
-3|12|jill|m|4
-9|99|AAAAA  GGGGG |m|9
+2|10|rose|f|10
