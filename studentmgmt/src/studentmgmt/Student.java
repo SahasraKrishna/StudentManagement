@@ -1,7 +1,7 @@
 package studentmgmt;
 
 public class Student {
-	public static int regnoGenerator=0;
+	public static int regnoGenerator = 0;
 	int regno;
 	int age;
 	String name;
@@ -17,7 +17,7 @@ public class Student {
 		this.grade = grade;
 	}
 
-	public  int getRegno() {
+	public int getRegno() {
 		return regno;
 	}
 
@@ -59,4 +59,8 @@ public class Student {
 				+ "]";
 	}
 
+	public String fileFormat() {
+		return regno + "|" + age + "|" + name + "|" + gender + "|" + grade+"\n";
+
+	}
 }

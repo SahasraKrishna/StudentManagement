@@ -8,50 +8,50 @@ import java.util.ArrayList;
 
 public class Actions {
 	// Scanner so = new Scanner(System.in);
-	ArrayList<Student> students = new ArrayList<>();
+	private ArrayList<Student> students;
+	private BufferedReader br;
+	private FileOperation fo;
 
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public Actions() {
+		students = new ArrayList<>();
+		br = new BufferedReader(new InputStreamReader(System.in));
+		fo = new FileOperation();
+	}
 
 	/**
 	 * It displays all students in the system
 	 * 
 	 * @return returns nothing
 	 * @exception no
-	 *                exceptions
 	 * 
 	 */
-	void displayStudents() {
-		System.out.println("  REGNO  \t   AGE  \t  NAME  \t  GENDER  \t  GRADE ");
-		for (Student k : students)
-			System.out.println(k);
+	public void displayStudents() {
+		System.out.println(" REGNO\tAGE\tNAME\tGENDER\tGRADE ");
+		// for (Student k : students)
+		// System.out.println(k.regno + " \t" + k.age + " \t" + k.name + " \t" +
+		// k.gender + " \t" + k.grade);
+		fo.displayData();
 	}
 
 	/**
 	 * It adds the student details into the arraylist
 	 * 
 	 * @return returns nothing
+	 * @throws IOException
 	 * @exception the
 	 *                name has to be of finite length also name consists of only
 	 *                alphabets but no numbers in it
 	 * 
 	 */
-	void addStudent() {
+	public Student addStudent() {
 		String name = readName();
-		System.out.print("enter the age:");
 		int age = readAge();
-		System.out.print("enter the gender:");
-		String gender = "M";
-		try {
-			gender = br.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch bloc
-			e.printStackTrace();
-		}
-		System.out.print("enter the grade:");
-		// int gr = sc.nextInt();
-		int gr = 44;
-		Student l = new Student(age, name, gender, gr);
-		students.add(l);
+		String gender = readGender();
+		int grade = readGrade();
+		Student student = new Student(age, name, gender, grade);
+		students.add(student);
+		fo.save(student);
+		return student;
 	}
 
 	/**
@@ -97,56 +97,126 @@ public class Actions {
 					System.out.println("re-enter the name:");
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} while (name.length() > 50);
 		return name;
 	}
 
-	/**
-	* 
-	*/
-	void deleteStudent() {
+	/*
+	 * used to store the gender of the student
+	 * 
+	 * @return gender
+	 * 
+	 * @exception invalid gender
+	 */
+	private String readGender() {
+		String gen = null;
+		System.out.print("enter the gender:");
+		try {
+			gen = br.readLine();
+			String[] g = { "male", "female", "M", "F", "male", "female", "m", "f" };
+			boolean result = false;
+			for (String gender : g) {
+				if (gen.equalsIgnoreCase(gender)) {
+					result = true;
+					break;
+				}
+			}
+			if (!result) {
+				System.out.println("Inalid details, Please check the gender");
+				return readGender();
+			}
 
-		int gr1 = readRegno();
-		// students.removeIf(s -> s.getRegno() == gr1);
+		} catch (IOException e) {
+			System.out.println("\nInvalid details,  Enter values for gender");
+			e.printStackTrace();
+		}
+		return gen;
 	}
 
+	/*
+	 * it stores the grade of the student
+	 * 
+	 * @return student grade
+	 * 
+	 * @exception NumberFormatException
+	 */
+	private int readGrade() {
+		int grade = 0;
+		System.out.print("enter the grade:");
+		String tmp;
+
+		try {
+			tmp = br.readLine();
+			grade = Integer.parseInt(tmp);
+			if (grade > 13) {
+				System.out.println("please check the grade and re-enter:");
+				return readGrade();
+			}
+		} catch (IOException e) {
+			System.out.println("\n Invalid details, Enter number value for grade ");
+			e.printStackTrace();
+		}
+		return grade;
+	}
+
+	/**
+	 * deletes the student record
+	 * 
+	 * @return nothing
+	 * @exception no
+	 */
+	public void deleteStudent() {
+
+		int gr1 = readRegno();
+		students.removeIf(s -> s.getRegno() == gr1);
+	}
+
+	/*
+	 * it modifies the student details
+	 * 
+	 * @return the student record
+	 * 
+	 * @exception no
+	 */
+	public void modifyStudent() {
+		System.out.println("enter the regno of student to be modified:");
+		int regno1 = readRegno();
+		for (Student s1 : students) {
+			if (s1.getRegno() == regno1) {
+				int age = readAge();
+				String name1 = readName();
+				String gender = readGender();
+				int gr = readGrade();
+				s1.setAge(age);
+				s1.setName(name1);
+				s1.setGender(gender);
+				s1.setGrade(gr);
+			} else {
+				System.out.println("Invalid regno,please check the regno ");
+			}
+		}
+	}
+
+	/*
+	 * it takes the value of registrationnumber
+	 * 
+	 * @return registrationnumber
+	 * 
+	 * @exception NumberFormat Exception
+	 */
 	private int readRegno() {
 		int regno = 0;
+		String tmp;
+		System.out.println("enter the regno:");
 		try {
-			System.out.print("enter the regno:");
-			String tmp = br.readLine();
+			tmp = br.readLine();
 			regno = Integer.parseInt(tmp);
 		} catch (IOException e) {
+			System.out.print(" \n Invalid data, Enter number for the regno");
 			e.printStackTrace();
 		}
 		return regno;
-
-	}
-
-	void modifyStudent() {
-		System.out.println("enter the regno of student to be modified:");
-		// int regno1 = sc.nextInt();
-		// sc.nextLine();
-		// for (Student s1 : students) {
-		// if (s1.getRegno() == regno1) {
-		// System.out.print("enter the age:");
-		// int age = sc.nextInt();
-		// sc.nextLine();
-		// System.out.print("enter the name:");
-		// String name1 = sc.nextLine();
-		// System.out.print("enter the gender:");
-		// String gender = sc.nextLine();
-		// System.out.print("enter the grade:");
-		// int gr = sc.nextInt();
-		// s1.setAge(age);
-		// s1.setName(name1);
-		// s1.setGender(gender);
-		// s1.setGrade(gr);
-		// }
-
-		// }
 	}
 }

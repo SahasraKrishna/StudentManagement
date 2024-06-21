@@ -1,0 +1,6 @@
+Student [regno=1, age=23, name=frgr, gender=m, grade=11]Student [regno=2, age=11, name=ndhe, gender=f, grade=2]Student [regno=1, age=12, name=drr, gender=m, grade=11]Student [regno=2, age=11, name=frr, gender=f, grade=10]Student [regno=3, age=11, name=deef, gender=m, grade=11]1|11|huef|m|111|11|jdije|m|11
+1|11|john|m|11
+2|11|rose|f|11
+1|11|john|m|1
+2|11|rose|f|11
+3|12|jill|m|4

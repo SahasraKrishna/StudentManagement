@@ -1,6 +1,6 @@
 package studentmgmt;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Studentmngmt {
 	public static void main(String[] args) {
