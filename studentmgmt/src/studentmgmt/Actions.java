@@ -50,7 +50,6 @@ public class Actions {
 		String gender = readGender();
 		int grade = readGrade();
 		Student student = new Student(regno, age, name, gender, grade);
-		students.add(student);
 		fo.save(student);
 		return student;
 	}
@@ -184,18 +183,15 @@ public class Actions {
 	public void modifyStudent() {
 		System.out.println("enter the regno of student to be modified:");
 		int regno1 = readRegno();
-		for (Student s1 : students) {
+		ArrayList<Student> student = fo.displayData();
+		for (Student s1 : student) {
 			if (s1.getRegno() == regno1) {
 				int age = readAge();
 				String name1 = readName();
 				String gender = readGender();
 				int gr = readGrade();
-				s1.setAge(age);
-				s1.setName(name1);
-				s1.setGender(gender);
-				s1.setGrade(gr);
-			} else {
-				System.out.println("Invalid regno,please check the regno ");
+				Student students = new Student(regno1, age, name1, gender, gr);
+				fo.save(students);
 			}
 		}
 	}
