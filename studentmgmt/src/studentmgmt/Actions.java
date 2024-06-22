@@ -50,7 +50,6 @@ public class Actions {
 		String gender = readGender();
 		int grade = readGrade();
 		Student student = new Student(regno, age, name, gender, grade);
-		// students.add(student);
 		fo.save(student);
 		return student;
 	}
@@ -191,10 +190,6 @@ public class Actions {
 				String name1 = readName();
 				String gender = readGender();
 				int gr = readGrade();
-				// s1.setAge(age);
-				// s1.setName(name1);
-				// s1.setGender(gender);
-				// s1.setGrade(gr);
 				Student students = new Student(regno1, age, name1, gender, gr);
 				fo.save(students);
 			}
