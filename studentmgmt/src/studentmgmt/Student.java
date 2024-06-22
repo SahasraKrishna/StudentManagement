@@ -72,7 +72,7 @@ public class Student {
 	 * @exception no
 	 */
 	public static Student fromFile(String line) {
-		String[] parts = line.split("|");
+		String[] parts = line.split("\\|");
 		String regno = parts[0];
 		int regno1 = Integer.parseInt(regno);
 		String age = parts[1];

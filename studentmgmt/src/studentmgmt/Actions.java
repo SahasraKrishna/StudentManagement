@@ -27,9 +27,10 @@ public class Actions {
 	 */
 	public void displayStudents() {
 		System.out.println("  REGNO\tAGE\tNAME\tGENDER\tGRADE ");
-		for (Student k : students)
-			System.out.println(k.regno + " \t" + k.age + " \t" + k.name + " \t" + k.gender + " \t" + k.grade);
-		fo.displayData();
+		ArrayList<Student> k = fo.displayData();
+		for (Student student : k)
+			System.out.println(student.regno + " \t" + student.age + " \t" + student.name + " \t" + student.gender
+					+ " \t" + student.grade);
 	}
 
 	/**
