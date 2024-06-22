@@ -20,7 +20,7 @@ public class FileOperation {
 		}
 	}
 
-	void save(Student student) {
+	public void save(Student student) {
 		try {
 			writer.write(student.fileFormat());
 			writer.flush();

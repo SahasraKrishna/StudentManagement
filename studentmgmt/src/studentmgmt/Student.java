@@ -83,4 +83,5 @@ public class Student {
 		int grade1 = Integer.parseInt(grade);
 		return new Student(regno1, age1, name, gender, grade1);
 	}
+	//why static??
 }
