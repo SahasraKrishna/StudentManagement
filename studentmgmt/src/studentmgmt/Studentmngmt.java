@@ -1,5 +1,6 @@
 package studentmgmt;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Studentmngmt {
@@ -25,8 +26,12 @@ public class Studentmngmt {
 				System.out.println("Student record deleted successfully");
 				break;
 			case 4:
-				ac.modifyStudent();
-				System.out.println("Student record modifies successfully");
+				try {
+					ac.modifyStudent();
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+				System.out.println("Student record modified successfully");
 				break;
 			case 5:
 				break;

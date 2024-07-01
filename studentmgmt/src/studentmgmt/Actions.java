@@ -22,13 +22,13 @@ public class Actions {
 	 * It displays all students in the system
 	 * 
 	 * @return returns nothing
+	 * @throws IOException 
 	 * @exception no
 	 * 
 	 */
 	public void displayStudents() {
-		System.out.println("  REGNO\tAGE\tNAME\tGENDER\tGRADE ");
-		ArrayList<Student> k = fo.displayData();
-		for (Student student : k)
+		ArrayList<Student> studentList = fo.displayData();
+		for (Student student : studentList)
 			System.out.println(student.regno + " \t" + student.age + " \t" + student.name + " \t" + student.gender
 					+ " \t" + student.grade);
 	}
@@ -180,19 +180,30 @@ public class Actions {
 	 * 
 	 * @exception no
 	 */
-	public void modifyStudent() {
+	public void modifyStudent() throws IOException {
 		System.out.println("enter the regno of student to be modified:");
 		int regno1 = readRegno();
-		ArrayList<Student> student = fo.displayData();
-		for (Student s1 : student) {
+		ArrayList<Student> students = fo.displayData();
+		for (Student s1 : students) {
 			if (s1.getRegno() == regno1) {
 				int age = readAge();
 				String name1 = readName();
 				String gender = readGender();
 				int gr = readGrade();
-				Student students = new Student(regno1, age, name1, gender, gr);
-				fo.save(students);
+				//s1.setRegno(regno1);
+				s1.setAge(age);
+				s1.setName(name1);
+				s1.setGender(gender);
+				s1.setGrade(gr);
+				//Student updatedstudent = new Student(regno1, age, name1, gender, gr);
+				//students.add(updatedstudent);
+				//fo.save(s1);
+				String path="E:\\WS2\\SamplePractice\\studentmgmt";
+				fo.writeToFile(path, s1.fileFormat(),regno1);
 			}
+			//else {
+				//System.out.println(" given regno not found in the list");
+			//}
 		}
 	}
 

@@ -10,7 +10,11 @@ public class Student {
 
 	public Student(int regno, int age, String name, String gender, int grade) {
 		super();
-		this.regno = ++regnoGenerator;
+		if (regno >= regnoGenerator) {
+			this.regno = regno;
+		} else {
+			this.regno = ++regnoGenerator;
+		}
 		this.age = age;
 		this.name = name;
 		this.gender = gender;
@@ -19,6 +23,10 @@ public class Student {
 
 	public int getRegno() {
 		return regno;
+	}
+
+	public void setRegno(int regno) {
+		this.regno = regno;
 	}
 
 	public int getAge() {
@@ -73,15 +81,20 @@ public class Student {
 	 */
 	public static Student fromFile(String line) {
 		String[] parts = line.split("\\|");
-		String regno = parts[0];
-		int regno1 = Integer.parseInt(regno);
+		String regno1 = parts[0];
+		int regno = Integer.parseInt(regno1);
 		String age = parts[1];
 		int age1 = Integer.parseInt(age);
 		String name = parts[2];
 		String gender = parts[3];
 		String grade = parts[4];
 		int grade1 = Integer.parseInt(grade);
-		return new Student(regno1, age1, name, gender, grade1);
+		Student student = new Student(regno, age1, name, gender, grade1);
+		student.regno = regno;
+		if (regno > regnoGenerator) {
+			regnoGenerator = regno;
+		}
+		return student;
 	}
-	//why static??
+	// why static??
 }

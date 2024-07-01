@@ -1,5 +1,6 @@
 package studentmgmt;
 
+import java.io.RandomAccessFile;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -24,7 +25,7 @@ public class FileOperation {
 		try {
 			writer.write(student.fileFormat());
 			writer.flush();
-			System.out.println("student added successfully");
+			System.out.println("student added successfullyinto the file");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -43,9 +44,17 @@ public class FileOperation {
 			reader.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return students;
 
 	}
+
+	public void writeToFile(String path, String data, int position) throws IOException {
+		RandomAccessFile file = new RandomAccessFile("output.txt", "rw");
+		System.out.println("Length of the file:" + file.length());
+		file.seek((position-1)*14);
+		file.write(data.getBytes());
+		file.close();
+	}
+
 }
