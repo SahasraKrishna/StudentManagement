@@ -8,29 +8,34 @@ import java.util.ArrayList;
 
 public class Actions {
 	// Scanner so = new Scanner(System.in);
-	private ArrayList<Student> students;
+//	private ArrayList<Student> students;
 	private BufferedReader br;
 	private FileOperation fo;
+	private StudentDatabse db;
 
-	public Actions() {
-		students = new ArrayList<>();
+	public Actions() throws Exception {
+		//students = new ArrayList<>();
 		br = new BufferedReader(new InputStreamReader(System.in));
 		fo = new FileOperation();
+		db = new StudentDatabse();
 	}
 
 	/**
 	 * It displays all students in the system
 	 * 
 	 * @return returns nothing
-	 * @throws IOException 
+	 * @throws Exception
+	 * @throws IOException
 	 * @exception no
 	 * 
 	 */
-	public void displayStudents() {
-		ArrayList<Student> studentList = fo.displayData();
-		for (Student student : studentList)
-			System.out.println(student.regno + " \t" + student.age + " \t" + student.name + " \t" + student.gender
-					+ " \t" + student.grade);
+	public void displayStudents() throws Exception {
+		// ArrayList<Student> studentList = fo.displayData();
+		// for (Student student : studentList)
+		// System.out.println(student.regno + " \t" + student.age + " \t" + student.name
+		// + " \t" + student.gender
+		// + " \t" + student.grade);
+		db.displayData();
 	}
 
 	/**
@@ -50,7 +55,8 @@ public class Actions {
 		String gender = readGender();
 		int grade = readGrade();
 		Student student = new Student(regno, age, name, gender, grade);
-		fo.save(student);
+		// fo.save(student);
+		db.addData(student);
 		return student;
 	}
 
@@ -165,12 +171,14 @@ public class Actions {
 	 * deletes the student record
 	 * 
 	 * @return nothing
+	 * @throws Exception
 	 * @exception no
 	 */
-	public void deleteStudent() {
+	public void deleteStudent() throws Exception {
 
-		int gr1 = readRegno();
-		students.removeIf(s -> s.getRegno() == gr1);
+		int regno = readRegno();
+		// students.removeIf(s -> s.getRegno() == gr1);
+		db.deleteData(regno);
 	}
 
 	/*
@@ -190,20 +198,20 @@ public class Actions {
 				String name1 = readName();
 				String gender = readGender();
 				int gr = readGrade();
-				//s1.setRegno(regno1);
+				// s1.setRegno(regno1);
 				s1.setAge(age);
 				s1.setName(name1);
 				s1.setGender(gender);
 				s1.setGrade(gr);
-				//Student updatedstudent = new Student(regno1, age, name1, gender, gr);
-				//students.add(updatedstudent);
-				//fo.save(s1);
-				String path="E:\\WS2\\SamplePractice\\studentmgmt";
-				fo.writeToFile(path, s1.fileFormat(),regno1);
+				// Student updatedstudent = new Student(regno1, age, name1, gender, gr);
+				// students.add(updatedstudent);
+				// fo.save(s1);
+				// String path="E:\\WS2\\SamplePractice\\studentmgmt";
+				// fo.writeToFile(path, s1.fileFormat(),regno1);
 			}
-			//else {
-				//System.out.println(" given regno not found in the list");
-			//}
+			// else {
+			// System.out.println(" given regno not found in the list");
+			// }
 		}
 	}
 
