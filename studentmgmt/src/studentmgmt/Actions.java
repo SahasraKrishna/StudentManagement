@@ -3,20 +3,18 @@ package studentmgmt;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-//import java.util.Scanner;
 
 public class Actions {
 	// Scanner so = new Scanner(System.in);
-//	private ArrayList<Student> students;
+	// private ArrayList<Student> students;
 	private BufferedReader br;
-	private FileOperation fo;
+	// private FileOperation fo;
 	private StudentDatabse db;
 
 	public Actions() throws Exception {
-		//students = new ArrayList<>();
+		// students = new ArrayList<>();
 		br = new BufferedReader(new InputStreamReader(System.in));
-		fo = new FileOperation();
+		// fo = new FileOperation();
 		db = new StudentDatabse();
 	}
 
@@ -189,30 +187,7 @@ public class Actions {
 	 * @exception no
 	 */
 	public void modifyStudent() throws IOException {
-		System.out.println("enter the regno of student to be modified:");
-		int regno1 = readRegno();
-		ArrayList<Student> students = fo.displayData();
-		for (Student s1 : students) {
-			if (s1.getRegno() == regno1) {
-				int age = readAge();
-				String name1 = readName();
-				String gender = readGender();
-				int gr = readGrade();
-				// s1.setRegno(regno1);
-				s1.setAge(age);
-				s1.setName(name1);
-				s1.setGender(gender);
-				s1.setGrade(gr);
-				// Student updatedstudent = new Student(regno1, age, name1, gender, gr);
-				// students.add(updatedstudent);
-				// fo.save(s1);
-				// String path="E:\\WS2\\SamplePractice\\studentmgmt";
-				// fo.writeToFile(path, s1.fileFormat(),regno1);
-			}
-			// else {
-			// System.out.println(" given regno not found in the list");
-			// }
-		}
+		db.modifyData();
 	}
 
 	/*
