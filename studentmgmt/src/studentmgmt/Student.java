@@ -1,7 +1,7 @@
 package studentmgmt;
 
 public class Student {
-	public static int regnoGenerator = 0;
+	public static int regnoGenerator = 1;
 	int regno;
 	int age;
 	String name;
